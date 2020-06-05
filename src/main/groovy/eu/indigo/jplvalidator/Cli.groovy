@@ -1,8 +1,15 @@
 package eu.indigo.jplvalidator
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.networknt.schema.JsonSchemaFactory
+import com.networknt.schema.SpecVersion
+import com.networknt.schema.JsonSchema
+
 import picocli.CommandLine
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
+import picocli.CommandLine.Parameters
 
 @Command(
   name = "jpl-validator",
@@ -11,13 +18,30 @@ import picocli.CommandLine.Option
   mixinStandardHelpOptions = true
 )
 public class Cli implements Runnable {
+    @Parameters(arity="1", paramLabel="FILE", description="The file(s) whose checksum to calculate.")
+    File[] files
+
     void run() {
-        validate()
+        files.each { file ->
+            if (file.exists()) {
+                println(validate(file))
+            }
+        }
     }
 
-    void validate() {
+    Set validate(File file) {
 		String schema = this.getClass().getResource('/schema.json').text
-        println(schema)
+        
+        ObjectMapper objMapper = new ObjectMapper(new YAMLFactory())
+
+        JsonSchemaFactory factory = JsonSchemaFactory.builder(
+                JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7))
+                .objectMapper(objMapper).build()
+
+        Set invalidMessages = factory.getSchema(schema)
+                .validate(objMapper.readTree(file.text))
+                .message
+        return invalidMessages
     }
 
     static void main(String[] args) {

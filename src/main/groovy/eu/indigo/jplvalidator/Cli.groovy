@@ -19,7 +19,6 @@ import java.util.concurrent.Callable
   version = "jpl-validator 1.0.0",
   mixinStandardHelpOptions = true
 )
-//public class Cli implements Runnable {
 public class Cli implements Callable<Integer> {
     @Parameters(index="0", paramLabel="FILE", description="The config file to validate.")
     private File file

@@ -1,4 +1,4 @@
-== jpl-validator ==
+## jpl-validator
 
 Application that validates the main YAML-based configuration file from the v2 
 series of the 
@@ -6,7 +6,7 @@ series of the
 
 The validation uses a [JSON schema](src/main/resources/schema.json) (Draft 7).
 
-=== Usage ===
+### Usage
 ```
 & ./gradlew run --args='.sqa/config.yml' 
 ```

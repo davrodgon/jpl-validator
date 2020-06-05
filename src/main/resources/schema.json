@@ -7,7 +7,12 @@
                 "repo": { "type": "string", "format": "uri" },
                 "branch": { "type": "string" },
                 "dockerhub": { "type": "string" },
-                "dockertag": { "type": "string" }
+                "dockertag": {
+                    "anyOf": [
+                        { "type": "string" },
+                        { "type": "array" }
+                    ]
+                }
             },
             "required": ["repo"]
         },
@@ -71,7 +76,10 @@
             "description": "Definition of the generic parameters to be used by the subsequent settings",
             "type": "object",
             "properties": {
-                "node_agent": { "type": "string" },
+                "node_agent": { 
+                    "type": "string",
+                    "enum": ["docker-compose"]
+                },
                 "deploy_template": { "type": "string" },
                 "project_repos": { "$ref": "#/definitions/config_repo" }
             },
@@ -100,7 +108,7 @@
         "timeout": {
             "description": "Sets the timeout for the pipeline execution",
             "type": "integer",
-            minimum: 0
+            "minimum": 1
         },
         "required": [
             "config",

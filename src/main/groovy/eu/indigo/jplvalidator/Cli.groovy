@@ -11,25 +11,34 @@ import picocli.CommandLine.Command
 import picocli.CommandLine.Option
 import picocli.CommandLine.Parameters
 
+import java.util.concurrent.Callable
+
 @Command(
   name = "jpl-validator",
   description = "Validates config.yml from jenkins-pipeline-library (v2)",
   version = "jpl-validator 1.0.0",
   mixinStandardHelpOptions = true
 )
-public class Cli implements Runnable {
-    @Parameters(arity="1", paramLabel="FILE", description="The file(s) whose checksum to calculate.")
-    File[] files
+//public class Cli implements Runnable {
+public class Cli implements Callable<Integer> {
+    @Parameters(index="0", paramLabel="FILE", description="The config file to validate.")
+    private File file
+    private validationExitCode = -1
 
-    void run() {
-        files.each { file ->
-            if (file.exists()) {
-                println(validate(file))
+    public Integer call() throws Exception {
+        if (file.exists()) {
+            Set result = validate(file)
+            if (result) {
+                println(result)
+            }
+            else {
+                validationExitCode = 0
             }
         }
+        return validationExitCode
     }
 
-    Set validate(File file) {
+    private Set validate(File file) {
 		String schema = this.getClass().getResource('/schema.json').text
         
         ObjectMapper objMapper = new ObjectMapper(new YAMLFactory())
@@ -45,6 +54,7 @@ public class Cli implements Runnable {
     }
 
     static void main(String[] args) {
-        System.exit(new CommandLine(new Cli()).execute(args))
+        int exitCode = new CommandLine(new Cli()).execute(args)
+        System.exit(exitCode)
     }
 }

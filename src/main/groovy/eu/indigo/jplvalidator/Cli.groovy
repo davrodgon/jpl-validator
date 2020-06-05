@@ -12,8 +12,14 @@ import picocli.CommandLine.Option
 )
 public class Cli implements Runnable {
     void run() {
-		String schema = this.getClass().getResource('/jplvalidator/schema.json').text
+        validate()
     }
+
+    void validate() {
+		String schema = this.getClass().getResource('/schema.json').text
+        println(schema)
+    }
+
     static void main(String[] args) {
         System.exit(new CommandLine(new Cli()).execute(args))
     }

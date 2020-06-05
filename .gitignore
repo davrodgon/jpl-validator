@@ -1,4 +1,4 @@
 *.swp
-*build
-*.gradle
+/build/
+.gradle
 *.log

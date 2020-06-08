@@ -8,5 +8,5 @@ The validation uses a [JSON schema](src/main/resources/schema.json) (Draft 7).
 
 ### Usage
 ```
-& ./gradlew run --args='.sqa/config.yml' 
+$ ./gradlew run --args='.sqa/config.yml' 
 ```

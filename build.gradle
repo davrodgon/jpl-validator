@@ -7,8 +7,11 @@
  * user guide available at https://docs.gradle.org/3.2.1/userguide/tutorial_java_projects.html
  */
 
-apply plugin: 'groovy'
-apply plugin: 'application'
+plugins {
+    id 'groovy'
+    id 'application'
+    id 'com.google.cloud.tools.jib' version '1.8.0'
+}
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -31,6 +34,10 @@ dependencies {
 }
 
 mainClassName = 'eu.indigo.jplvalidator.Cli'
+version = '1.0.0'
+
+// Google's jib task
+jib.to.image = "eoscsynergy/${project.name}:${version}"
 
 // 'fatJar' task
 task fatJar(type: Jar) {

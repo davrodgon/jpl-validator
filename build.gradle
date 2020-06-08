@@ -10,7 +10,7 @@
 plugins {
     id 'groovy'
     id 'application'
-    id 'com.google.cloud.tools.jib' version '1.8.0'
+    id 'com.google.cloud.tools.jib' version '2.3.0'
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -38,6 +38,7 @@ version = '1.0.0'
 
 // Google's jib task
 jib.to.image = "eoscsynergy/${project.name}:${version}"
+jib.container.mainClass = mainClassName
 
 // 'fatJar' task
 task fatJar(type: Jar) {

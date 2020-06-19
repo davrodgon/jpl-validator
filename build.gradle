@@ -34,10 +34,10 @@ dependencies {
 }
 
 mainClassName = 'eu.indigo.jplvalidator.Cli'
-version = '1.0.0'
+version = '1.1.0'
 
 // Google's jib task
-jib.to.image = "eoscsynergy/${project.name}:${version}"
+jib.to.image = "worsica/${project.name}:${version}"
 jib.container.mainClass = mainClassName
 
 // 'fatJar' task

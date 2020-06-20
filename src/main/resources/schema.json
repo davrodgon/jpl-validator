@@ -34,6 +34,8 @@
         },
         "withCredentials": {
             "type": "object",
+            "minProperties": 1,
+            "maxProperties": 1,
             "properties": {
                 "string": { "$ref": "#/definitions/withCredentials_string" },
                 "file": { "$ref": "#/definitions/withCredentials_string" },

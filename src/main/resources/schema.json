@@ -91,7 +91,8 @@
                 "container": { "type": "string" },
                 "commands": { "type": "array" },
                 "tox": { "$ref": "#/definitions/tox" },
-                "withCredentials": { "$ref": "#/definitions/withCredentials" }
+                "withCredentials": { "$ref": "#/definitions/withCredentials" },
+                "environment": { "$ref": "#/definitions/environment" }
             },
             "oneOf": [
                 { "required": ["commands"] },
@@ -111,12 +112,19 @@
         },
         "sqa_criterion": {
             "type": "object",
-            "minProperties": 1,
             "properties": {
                 "repos": { "$ref": "#/definitions/sqa_criterion_repo" }
             },
             "required": ["repos"],
             "additionalProperties": false
+        },
+        "environment": {
+            "description": "Sets the environment variables required for the runtime context",
+            "type": "object",
+            "minProperties": 1,
+            "propertyNames": {
+                "pattern": "^[A-Z]{1}[A-Z0-9_]*"
+            }
         }
     },
     "type": "object",
@@ -147,13 +155,7 @@
             },
             "additionalProperties": false
         },
-        "environment": {
-            "description": "Sets the environment variables required to execute the previouos SQA criteria blocks",
-            "type": "object",
-            "propertyNames": {
-                "pattern": "^[A-Z]{1}[A-Z0-9_]*"
-            }
-        },
+        "environment": { "$ref": "#/definitions/environment" },
         "timeout": {
             "description": "Sets the timeout for the pipeline execution",
             "type": "integer",

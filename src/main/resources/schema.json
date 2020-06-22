@@ -39,9 +39,9 @@
                 "commands": { "type": "array" },
                 "tox": { "$ref": "#/definitions/tox" }
             },
-            "oneOf":[
-                { "required": [ "commands" ]},
-                { "required": [ "tox" ]}
+            "oneOf": [
+                { "required": ["commands"] },
+                { "required": ["tox"] }
             ],
             "additionalProperties": false,
             "dependencies": {
@@ -71,7 +71,7 @@
             "description": "Definition of the generic parameters to be used by the subsequent settings",
             "type": "object",
             "properties": {
-                "node_agent": { 
+                "node_agent": {
                     "type": "string",
                     "enum": ["docker-compose"]
                 },
@@ -104,11 +104,11 @@
             "description": "Sets the timeout for the pipeline execution",
             "type": "integer",
             "minimum": 1
-        },
-        "required": [
-            "config",
-            "sqa-criteria"
-        ],
-        "additionalProperties": false
-    }
+        }
+    },
+    "required": [
+        "config",
+        "sqa-criteria"
+    ],
+    "additionalProperties": false
 }

@@ -32,12 +32,66 @@
             "required": ["testenv"],
             "additionalProperties": false
         },
+        "withCredentials": {
+            "type": "object",
+            "properties": {
+                "string": { "$ref": "#/definitions/withCredentials_string" },
+                "file": { "$ref": "#/definitions/withCredentials_string" },
+                "zip": { "$ref": "#/definitions/withCredentials_string" },
+                "certificate": { "$ref": "#/definitions/withCredentials_certificate" },
+                "usernamePassword": { "$ref": "#/definitions/withCredentials_usernamePassword" },
+                "sshUserPrivateKey": { "$ref": "#/definitions/withCredentials_sshUserPrivateKey" }
+            },
+            "additionalProperties": false
+        },
+        "withCredentials_string": {
+            "type": "object",
+            "properties": {
+                "credentialsId": { "type": "string" },
+                "variable": { "type": "string" }
+            },
+            "required": ["credentialsId", "variable"],
+            "additionalProperties": false
+        },
+        "withCredentials_certificate": {
+            "type": "object",
+            "properties": {
+                "keystoreVariable": { "type": "string" },
+                "credentialsId": { "type": "string" },
+                "aliasVariable": { "type": "string" },
+                "passwordVariable": { "type": "string" }
+            },
+            "required": ["keystoreVariable", "credentialsId"],
+            "additionalProperties": false
+        },
+        "withCredentials_usernamePassword": {
+            "type": "object",
+            "properties": {
+                "credentialsId": { "type": "string" },
+                "usernameVariable": { "type": "string" },
+                "passwordVariable": { "type": "string" }
+            },
+            "required": ["credentialsId", "usernameVariable", "passwordVariable"],
+            "additionalProperties": false
+        },
+        "withCredentials_sshUserPrivateKey": {
+            "type": "object",
+            "properties": {
+                "keyFileVariable": { "type": "string" },
+                "credentialsId": { "type": "string" },
+                "passphraseVariable": { "type": "string" },
+                "usernameVariable": { "type": "string" }
+            },
+            "required": ["keyFileVariable", "credentialsId"],
+            "additionalProperties": false
+        },
         "repo_settings": {
             "type": "object",
             "properties": {
                 "container": { "type": "string" },
                 "commands": { "type": "array" },
-                "tox": { "$ref": "#/definitions/tox" }
+                "tox": { "$ref": "#/definitions/tox" },
+                "withCredentials": { "$ref": "#/definitions/withCredentials" }
             },
             "oneOf": [
                 { "required": ["commands"] },
@@ -73,23 +127,23 @@
             "properties": {
                 "node_agent": {
                     "type": "string",
-                    "enum": ["docker-compose"]
+                    "enum": ["docker_compose"]
                 },
                 "deploy_template": { "type": "string" },
                 "project_repos": { "$ref": "#/definitions/config_repo" }
             },
             "required": ["project_repos"]
         },
-        "sqa-criteria": {
+        "sqa_criteria": {
             "description": "Contains all the required SQA baseline's criteria definitions",
             "type": "object",
             "minProperties": 1,
             "properties": {
-                "qc-style": { "$ref": "#/definitions/sqa_criterion" },
-                "qc-coverage": { "$ref": "#/definitions/sqa_criterion" },
-                "qc-functional": { "$ref": "#/definitions/sqa_criterion" },
-                "qc-security": { "$ref": "#/definitions/sqa_criterion" },
-                "qc-doc": { "$ref": "#/definitions/sqa_criterion" }
+                "qc_style": { "$ref": "#/definitions/sqa_criterion" },
+                "qc_coverage": { "$ref": "#/definitions/sqa_criterion" },
+                "qc_functional": { "$ref": "#/definitions/sqa_criterion" },
+                "qc_security": { "$ref": "#/definitions/sqa_criterion" },
+                "qc_doc": { "$ref": "#/definitions/sqa_criterion" }
             },
             "additionalProperties": false
         },
@@ -108,7 +162,7 @@
     },
     "required": [
         "config",
-        "sqa-criteria"
+        "sqa_criteria"
     ],
     "additionalProperties": false
 }

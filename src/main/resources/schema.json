@@ -91,9 +91,7 @@
             "properties": {
                 "container": { "type": "string" },
                 "commands": { "type": "array" },
-                "tox": { "$ref": "#/definitions/tox" },
-                "withCredentials": { "$ref": "#/definitions/withCredentials" },
-                "environment": { "$ref": "#/definitions/environment" }
+                "tox": { "$ref": "#/definitions/tox" }
             },
             "oneOf": [
                 { "required": ["commands"] },
@@ -139,8 +137,10 @@
                     "enum": ["docker_compose"]
                 },
                 "deploy_template": { "type": "string" },
-                "project_repos": { "$ref": "#/definitions/config_repo" }
+                "project_repos": { "$ref": "#/definitions/config_repo" },
+                "credentials": { "$ref": "#/definitions/credentials" }
             },
+            "additionalProperties": false,
             "required": ["project_repos"]
         },
         "sqa_criteria": {

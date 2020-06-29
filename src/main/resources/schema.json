@@ -32,19 +32,6 @@
             "required": ["testenv"],
             "additionalProperties": false
         },
-        "credentials": {
-            "type": "object",
-            "minProperties": 1,
-            "properties": {
-                "string": { "$ref": "#/definitions/credentials_string" },
-                "file": { "$ref": "#/definitions/credentials_string" },
-                "zip": { "$ref": "#/definitions/credentials_string" },
-                "certificate": { "$ref": "#/definitions/credentials_certificate" },
-                "usernamePassword": { "$ref": "#/definitions/credentials_usernamePassword" },
-                "sshUserPrivateKey": { "$ref": "#/definitions/credentials_sshUserPrivateKey" }
-            },
-            "additionalProperties": false
-        },
         "credentials_string": {
             "type": "object",
             "properties": {
@@ -154,7 +141,17 @@
                 },
                 "deploy_template": { "type": "string" },
                 "project_repos": { "$ref": "#/definitions/config_repo" },
-                "credentials": { "$ref": "#/definitions/credentials" }
+                "credentials": { 
+                    "type": "array",
+                    "items": {
+                        "anyOf": [
+                            { "$ref": "#/definitions/credentials_string" },
+                            { "$ref": "#/definitions/credentials_certificate" },
+                            { "$ref": "#/definitions/credentials_username_password" },
+                            { "$ref": "#/definitions/credentials_ssh_user_private_key" }
+                        ]
+                    }
+                }
             },
             "additionalProperties": false,
             "required": ["project_repos"]

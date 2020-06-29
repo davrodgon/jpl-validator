@@ -32,20 +32,20 @@
             "required": ["testenv"],
             "additionalProperties": false
         },
-        "withCredentials": {
+        "credentials": {
             "type": "object",
             "minProperties": 1,
             "properties": {
-                "string": { "$ref": "#/definitions/withCredentials_string" },
-                "file": { "$ref": "#/definitions/withCredentials_string" },
-                "zip": { "$ref": "#/definitions/withCredentials_string" },
-                "certificate": { "$ref": "#/definitions/withCredentials_certificate" },
-                "usernamePassword": { "$ref": "#/definitions/withCredentials_usernamePassword" },
-                "sshUserPrivateKey": { "$ref": "#/definitions/withCredentials_sshUserPrivateKey" }
+                "string": { "$ref": "#/definitions/credentials_string" },
+                "file": { "$ref": "#/definitions/credentials_string" },
+                "zip": { "$ref": "#/definitions/credentials_string" },
+                "certificate": { "$ref": "#/definitions/credentials_certificate" },
+                "usernamePassword": { "$ref": "#/definitions/credentials_usernamePassword" },
+                "sshUserPrivateKey": { "$ref": "#/definitions/credentials_sshUserPrivateKey" }
             },
             "additionalProperties": false
         },
-        "withCredentials_string": {
+        "credentials_string": {
             "type": "object",
             "properties": {
                 "credentialsId": { "type": "string" },
@@ -54,7 +54,7 @@
             "required": ["credentialsId", "variable"],
             "additionalProperties": false
         },
-        "withCredentials_certificate": {
+        "credentials_certificate": {
             "type": "object",
             "properties": {
                 "keystoreVariable": { "type": "string" },
@@ -65,7 +65,7 @@
             "required": ["keystoreVariable", "credentialsId"],
             "additionalProperties": false
         },
-        "withCredentials_usernamePassword": {
+        "credentials_usernamePassword": {
             "type": "object",
             "properties": {
                 "credentialsId": { "type": "string" },
@@ -75,7 +75,7 @@
             "required": ["credentialsId", "usernameVariable", "passwordVariable"],
             "additionalProperties": false
         },
-        "withCredentials_sshUserPrivateKey": {
+        "credentials_sshUserPrivateKey": {
             "type": "object",
             "properties": {
                 "keyFileVariable": { "type": "string" },

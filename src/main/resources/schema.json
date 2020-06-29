@@ -48,42 +48,58 @@
         "credentials_string": {
             "type": "object",
             "properties": {
-                "credentialsId": { "type": "string" },
+                "type": {
+                    "type": "string",
+                    "enum": ["string", "file", "zip"]
+                },
+                "id": { "type": "string" },
                 "variable": { "type": "string" }
             },
-            "required": ["credentialsId", "variable"],
+            "required": ["id"],
             "additionalProperties": false
         },
         "credentials_certificate": {
             "type": "object",
             "properties": {
-                "keystoreVariable": { "type": "string" },
-                "credentialsId": { "type": "string" },
-                "aliasVariable": { "type": "string" },
-                "passwordVariable": { "type": "string" }
+                "type": {
+                    "type": "string",
+                    "const": "certificate"
+                },
+                "id": { "type": "string" },
+                "keystore_var": { "type": "string" },
+                "alias_var": { "type": "string" },
+                "password_var": { "type": "string" }
             },
-            "required": ["keystoreVariable", "credentialsId"],
+            "required": ["keystore_var", "id"],
             "additionalProperties": false
         },
-        "credentials_usernamePassword": {
+        "credentials_username_password": {
             "type": "object",
             "properties": {
-                "credentialsId": { "type": "string" },
-                "usernameVariable": { "type": "string" },
-                "passwordVariable": { "type": "string" }
+                "type": {
+                    "type": "string",
+                    "const": "username_password"
+                },
+                "id": { "type": "string" },
+                "username_var": { "type": "string" },
+                "password_var": { "type": "string" }
             },
-            "required": ["credentialsId", "usernameVariable", "passwordVariable"],
+            "required": ["id", "username_var", "password_var"],
             "additionalProperties": false
         },
-        "credentials_sshUserPrivateKey": {
+        "credentials_ssh_user_private_key": {
             "type": "object",
             "properties": {
-                "keyFileVariable": { "type": "string" },
-                "credentialsId": { "type": "string" },
-                "passphraseVariable": { "type": "string" },
-                "usernameVariable": { "type": "string" }
+                "type": {
+                    "type": "string",
+                    "const": "ssh_user_private_key"
+                },
+                "id": { "type": "string" },
+                "keyfile_var": { "type": "string" },
+                "passphrase_var": { "type": "string" },
+                "username_var": { "type": "string" }
             },
-            "required": ["keyFileVariable", "credentialsId"],
+            "required": ["keyfile_var", "id"],
             "additionalProperties": false
         },
         "repo_settings": {

@@ -1,0 +1,18 @@
+config:
+  project_repos:
+    jpl-validator:
+      repo: 'https://github.com/eosc-synergy/jpl-validator'
+      branch: release/1.1.0
+  credentials:
+      - type: username_password
+        id: orviz-dockerhub
+        username_var: DOCKER_USER
+        password_var: DOCKER_PASS
+
+sqa_criteria:
+  qc_doc:
+    repos:
+      jpl-validator:
+        container: gradle
+        commands:
+            - ./jpl-validator/gradlew jib

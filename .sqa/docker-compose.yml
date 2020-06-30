@@ -1,0 +1,10 @@
+version: "3.6"
+
+services:
+  gradle:
+    image: "gradle:latest"
+    hostname: "jpl-validator"
+    volumes:
+      - type: bind
+        source: ./jpl-validator
+        target: /jpl-validator 

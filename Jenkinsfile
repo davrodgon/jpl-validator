@@ -1,4 +1,4 @@
-@Library(['github.com/indigo-dc/jenkins-pipeline-library@2.0.0']) _
+@Library(['github.com/indigo-dc/jenkins-pipeline-library@defaults-for-creds']) _
 
 def projectConfig
 

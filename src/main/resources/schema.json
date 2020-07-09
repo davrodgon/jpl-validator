@@ -35,11 +35,7 @@
         "credentials_string": {
             "type": "object",
             "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": ["string", "file", "zip"],
-                    "description": "Fixed ID for the <string>, <file> & <zip> credential type (see Jenkins' Credentials Binding Plugin)"
-                },
+                "type": "string",
                 "id": {
                     "type": "string",
                     "description": "Identifier used in Jenkins endpoint for the current credentials"
@@ -50,6 +46,26 @@
                 }
             },
             "required": ["id"],
+            "additionalProperties": false
+        },
+        "credentials_file": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["file", "zip"],
+                    "description": "Fixed ID for the <file> & <zip> credential type (see Jenkins' Credentials Binding Plugin)"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Identifier used in Jenkins endpoint for the current credentials"
+                },
+                "variable": {
+                    "type": "string",
+                    "description": "Sets a variable to the file given in the credentials (see Jenkins' Credentials Binding Plugin)"
+                }
+            },
+            "required": ["type", "id"],
             "additionalProperties": false
         },
         "credentials_certificate": {
@@ -184,11 +200,12 @@
                 },
                 "deploy_template": { "type": "string" },
                 "project_repos": { "$ref": "#/definitions/config_repo" },
-                "credentials": { 
+                "credentials": {
                     "type": "array",
                     "items": {
                         "anyOf": [
                             { "$ref": "#/definitions/credentials_string" },
+                            { "$ref": "#/definitions/credentials_file" },
                             { "$ref": "#/definitions/credentials_certificate" },
                             { "$ref": "#/definitions/credentials_username_password" },
                             { "$ref": "#/definitions/credentials_ssh_user_private_key" }

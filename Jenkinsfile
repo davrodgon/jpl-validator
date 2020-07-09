@@ -1,4 +1,4 @@
-@Library(['github.com/indigo-dc/jenkins-pipeline-library@defaults-for-creds']) _
+@Library(['github.com/worsica/jenkins-pipeline-library@release/2.1.0']) _
 
 def projectConfig
 
@@ -9,7 +9,7 @@ pipeline {
         stage('SQA baseline dynamic stages') {
             steps {
                 script {
-                    projectConfig = pipelineConfig()
+                    projectConfig = pipelineConfig('./.sqa/config.yml', null, null, 'worsica/jpl-validator:latest')
                     buildStages(projectConfig)
                 }
             }

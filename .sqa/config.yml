@@ -16,4 +16,4 @@ sqa_criteria:
         container: gradle
         commands:
             - /jpl-validator/gradlew tasks
-            - /jpl-validator/gradlew jibDockerBuild
+            - /jpl-validator/gradlew jib

@@ -35,11 +35,11 @@ dependencies {
 
 mainClassName = 'eu.indigo.jplvalidator.Cli'
 version = 'latest'
-organization = 'worsica'
+project.ext.organization = 'worsica'
 
 // Google's jib task
 jib.container.mainClass = mainClassName
-jib.to.image = "${organization}/${project.name}:${version}"
+jib.to.image = "${project.ext.organization}/${project.name}:${version}"
 jib.to.auth.username = "${System.env.DOCKER_USER}"
 jib.to.auth.password = "${System.env.DOCKER_PASS}"
 

@@ -35,7 +35,7 @@ dependencies {
 
 mainClassName = 'eu.indigo.jplvalidator.Cli'
 version = 'latest'
-project.ext.organization = 'worsica'
+project.ext.organization = 'eoscsynergy'
 
 // Google's jib task
 jib.container.mainClass = mainClassName

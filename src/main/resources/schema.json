@@ -205,6 +205,7 @@
                     "items": {
                         "anyOf": [
                             { "$ref": "#/definitions/credentials_string" },
+                            { "$ref": "#/definitions/credentials_file" },
                             { "$ref": "#/definitions/credentials_certificate" },
                             { "$ref": "#/definitions/credentials_username_password" },
                             { "$ref": "#/definitions/credentials_ssh_user_private_key" }

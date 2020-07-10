@@ -9,7 +9,7 @@ pipeline {
         stage('SQA baseline dynamic stages') {
             steps {
                 script {
-                    projectConfig = pipelineConfig('./.sqa/config.yml', null, null, 'worsica/jpl-validator:latest')
+                    projectConfig = pipelineConfig('./.sqa/config.yml', null, null, 'worsica/jpl-validator:jib-with-jpl')
                     buildStages(projectConfig)
                 }
             }

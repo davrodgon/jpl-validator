@@ -2,9 +2,10 @@ version: "3.6"
 
 services:
   gradle:
-    image: "gradle:latest"
+    image: "gradle:jib-with-jpl"
     hostname: "jpl-validator"
     volumes:
       - type: bind
         source: ./jpl-validator
-        target: /jpl-validator 
+        target: /jpl-validator
+    command: sleep infinity

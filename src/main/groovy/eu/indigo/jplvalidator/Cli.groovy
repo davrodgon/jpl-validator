@@ -16,7 +16,7 @@ import java.util.concurrent.Callable
 @Command(
   name = "jpl-validator",
   description = "Validates config.yml from jenkins-pipeline-library (v2)",
-  version = "jpl-validator 1.1.0",
+  version = "jpl-validator jib-with-jpl",
   mixinStandardHelpOptions = true
 )
 public class Cli implements Callable<Integer> {

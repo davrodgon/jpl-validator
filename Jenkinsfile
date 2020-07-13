@@ -1,4 +1,4 @@
-@Library(['github.com/indigo-dc/jenkins-pipeline-library@fix/environment-variables']) _
+@Library(['github.com/indigo-dc/jenkins-pipeline-library@test/credentials-into-docker-compose']) _
 
 def projectConfig
 

@@ -8,7 +8,4 @@ services:
       - type: bind
         source: ./jpl-validator
         target: /jpl-validator
-    environment:
-      - DOCKER_USER="${DOCKER_USER}"
-      - DOCKER_PASS="${DOCKER_PASS}"
     command: sleep infinity

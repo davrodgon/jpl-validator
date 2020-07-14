@@ -6,8 +6,6 @@ config:
   credentials:
       - type: username_password
         id: orviz-dockerhub
-        username_var: DOCKER_USER
-        password_var: DOCKER_PASS
 
 sqa_criteria:
   qc_doc:

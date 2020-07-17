@@ -38,7 +38,7 @@ def details = versionDetails()
 
 mainClassName = 'eu.indigo.jplvalidator.Cli'
 version = details.branchName
-project.ext.organization = 'eoscsynergy'
+project.ext.organization = 'worsica'
 
 // Google's jib task
 jib.container.mainClass = mainClassName

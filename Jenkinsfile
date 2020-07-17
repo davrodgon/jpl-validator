@@ -12,7 +12,7 @@ pipeline {
                     branch 'master'
                     branch 'jib-with-jpl'
                     buildingTag()
-		    branch 'feature/triggered-branch-only'
+		    branch 'triggered-branch-only'
                 }
             }
             steps {

@@ -42,8 +42,7 @@ project.ext.organization = 'eoscsynergy'
 
 // Google's jib task
 jib.container.mainClass = mainClassName
-//jib.to.image = "${project.ext.organization}/${project.name}:${version}"
-jib.to.image = "${project.ext.organization}/${project.name}:triggered-branch-only"
+jib.to.image = "${project.ext.organization}/${project.name}:${version}"
 jib.to.auth.username = "${System.env.JPL_USERNAME}"
 jib.to.auth.password = "${System.env.JPL_PASSWORD}"
 

@@ -12,12 +12,12 @@ pipeline {
                     branch 'master'
                     branch 'jib-with-jpl'
                     buildingTag()
-		    branch 'triggered-branch-only'
+            branch 'triggered-branch-only'
                 }
             }
             steps {
                 script {
-                    projectConfig = pipelineConfig('./.sqa/config.yml', null, null, 'eoscsynergy/jpl-validator:feature/triggered-branch-only')
+                    projectConfig = pipelineConfig('./.sqa/config.yml', null, null, 'worsica/jpl-validator:triggered-branch-only')
                     //projectConfig = pipelineConfig('./.sqa/config.yml')
                     buildStages(projectConfig)
                 }

@@ -10,6 +10,7 @@ pipeline {
             when {
                 anyOf {
                     branch 'master'
+                    branch 'jib-with-jpl'
                     buildingTag()
                 }
             }

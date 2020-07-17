@@ -19,7 +19,6 @@
         },
         "config_repo": {
             "type": "object",
-            "minProperties": 1,
             "patternProperties": {
                 "[a-z0-9_]*": { "$ref": "#/definitions/config_repo_settings" }
             }

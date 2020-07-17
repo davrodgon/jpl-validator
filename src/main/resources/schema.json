@@ -213,8 +213,7 @@
                     }
                 }
             },
-            "additionalProperties": false,
-            "required": ["project_repos"]
+            "additionalProperties": false
         },
         "sqa_criteria": {
             "description": "Contains all the required SQA baseline's criteria definitions",

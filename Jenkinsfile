@@ -1,4 +1,4 @@
-@Library(['github.com/indigo-dc/jenkins-pipeline-library@release/2.1.0']) _
+@Library(['github.com/indigo-dc/jenkins-pipeline-library@feature/triggered-branch-only']) _
 
 def projectConfig
 
@@ -12,12 +12,13 @@ pipeline {
                     branch 'master'
                     branch 'jib-with-jpl'
                     buildingTag()
+		    branch 'feature/triggered-branch-only'
                 }
             }
             steps {
                 script {
-                    //projectConfig = pipelineConfig('./.sqa/config.yml', null, null, 'eoscsynergy/jpl-validator:jib-with-jpl')
-                    projectConfig = pipelineConfig('./.sqa/config.yml')
+                    projectConfig = pipelineConfig('./.sqa/config.yml', null, null, 'eoscsynergy/jpl-validator:feature/triggered-branch-only')
+                    //projectConfig = pipelineConfig('./.sqa/config.yml')
                     buildStages(projectConfig)
                 }
             }

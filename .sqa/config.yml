@@ -9,4 +9,6 @@ sqa_criteria:
       jpl-validator:
         container: gradle
         commands:
+            - ls -la /jpl-validator
+            - env
             - /jpl-validator/gradlew -p /jpl-validator jib

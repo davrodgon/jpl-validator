@@ -9,10 +9,9 @@ pipeline {
         stage('SQA baseline dynamic stages') {
             when {
                 anyOf {
-                    branch 'master'
-                    branch 'jib-with-jpl'
+                    branch 'refs/heads/*'
                     buildingTag()
-                    changeRequest branch: 'triggered-branch-only'
+                    not { changeRequest() }
                 }
             }
             steps {

@@ -11,6 +11,7 @@ plugins {
     id 'groovy'
     id 'application'
     id 'com.google.cloud.tools.jib' version '2.3.0'
+    id 'com.palantir.git-version' version '0.12.3'
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -34,20 +35,42 @@ dependencies {
 }
 
 mainClassName = 'eu.indigo.jplvalidator.Cli'
-version = '1.1.0'
+project.ext.organization = 'eoscsynergy'
+
+def details = versionDetails()
+version = gitVersion()
+if (details.commitDistance > 0) {
+    version = details.branchName
+}
+if (System.env.GIT_BRANCH) {
+    version = System.env.GIT_BRANCH
+}
 
 // Google's jib task
 jib.to.image = "eoscsynergy/${project.name}:${version}"
 jib.container.mainClass = mainClassName
+jib.to.auth.username = "${System.env.DOCKER_USER}"
+jib.to.auth.password = "${System.env.DOCKER_PASS}"
 
 // 'fatJar' task
 task fatJar(type: Jar) {
         manifest {
         attributes 'Implementation-Title': 'Gradle Jar File Example',
-                'Implementation-Version': version,
-                'Main-Class': mainClassName
+                   'Implementation-Version': version,
+                   'Main-Class': mainClassName
     }
     baseName = project.name
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
+}
+
+task showVersion {
+    doLast {
+        println "\nversion: ${version}\n"
+        println "last tag          : ${details.lastTag}"
+        println "commit distance   : ${details.commitDistance}"
+        println "hash              : ${details.gitHash}"
+        println "branch name       : ${details.branchName}"
+        println "is clean tag      : ${details.isCleanTag}"
+    }
 }

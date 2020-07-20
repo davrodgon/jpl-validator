@@ -6,6 +6,6 @@ services:
     hostname: "jpl-validator"
     volumes:
       - type: bind
-        source: ./jpl-validator
+        source: ./
         target: /jpl-validator
     command: sleep infinity

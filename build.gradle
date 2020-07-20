@@ -45,6 +45,8 @@ project.ext.organization = 'eoscsynergy'
 // Google's jib task
 jib.to.image = "eoscsynergy/${project.name}:${version}"
 jib.container.mainClass = mainClassName
+jib.to.auth.username = "${System.env.DOCKER_USER}"
+jib.to.auth.password = "${System.env.DOCKER_PASS}"
 
 // 'fatJar' task
 task fatJar(type: Jar) {

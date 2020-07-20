@@ -16,8 +16,7 @@ pipeline {
             }
             steps {
                 script {
-                    projectConfig = pipelineConfig('./.sqa/config.yml', null, null, 'eoscsynergy/jpl-validator:triggered-branch-only')
-                    //projectConfig = pipelineConfig('./.sqa/config.yml')
+                    projectConfig = pipelineConfig('./.sqa/config.yml')
                     buildStages(projectConfig)
                 }
             }

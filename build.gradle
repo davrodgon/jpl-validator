@@ -37,7 +37,7 @@ dependencies {
 def details = versionDetails()
 
 mainClassName = 'eu.indigo.jplvalidator.Cli'
-version = "${details.branchName}"
+version = details.branchName
 project.ext.organization = 'eoscsynergy'
 
 // Google's jib task

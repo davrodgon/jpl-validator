@@ -1,4 +1,4 @@
-@Library(['github.com/indigo-dc/jenkins-pipeline-library@feature/triggered-branch-only']) _
+@Library(['github.com/indigo-dc/jenkins-pipeline-library@feature/private-repositories']) _
 
 def projectConfig
 
@@ -16,7 +16,8 @@ pipeline {
             }
             steps {
                 script {
-                    projectConfig = pipelineConfig('./.sqa/config.yml')
+                    projectConfig = pipelineConfig('./.sqa/config.yml', null, null, null, 'eoscsynergy/jpl-validator:jib-with-jpl')
+                    //projectConfig = pipelineConfig('./.sqa/config.yml')
                     buildStages(projectConfig)
                 }
             }

@@ -1,4 +1,9 @@
 config:
+  project_repos:
+    jpl-validator:
+      repo: 'https://github.com/eosc-synergy/jpl-validator'
+      branch: master
+      credentials_id: orviz-github-basic
   credentials:
       - type: username_password
         id: orviz-dockerhub

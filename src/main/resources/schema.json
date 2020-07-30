@@ -220,6 +220,8 @@
             "type": "object",
             "minProperties": 1,
             "properties": {
+                "qc_accessibility": { "$ref": "#/definitions/sqa_criterion" },
+                "qc_licensing": { "$ref": "#/definitions/sqa_criterion" },
                 "qc_style": { "$ref": "#/definitions/sqa_criterion" },
                 "qc_coverage": { "$ref": "#/definitions/sqa_criterion" },
                 "qc_functional": { "$ref": "#/definitions/sqa_criterion" },

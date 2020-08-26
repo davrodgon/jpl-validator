@@ -5,14 +5,7 @@
             "type": "object",
             "properties": {
                 "repo": { "type": "string", "format": "uri" },
-                "branch": { "type": "string" },
-                "dockerhub": { "type": "string" },
-                "dockertag": {
-                    "anyOf": [
-                        { "type": "string" },
-                        { "type": "array" }
-                    ]
-                }
+                "branch": { "type": "string" }
             },
             "required": ["repo"]
         },

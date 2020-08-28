@@ -163,7 +163,8 @@
             ],
             "additionalProperties": false,
             "dependencies": {
-                "commands": ["container"]
+                "commands": ["container"],
+                "tox": ["container"]
             }
         },
         "sqa_criterion_repo": {

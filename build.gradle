@@ -24,14 +24,12 @@ repositories {
 // In this section you declare the dependencies for your production and test code
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.14'
-
-    compile 'info.picocli:picocli:4.1.0'
-    
+    compile 'info.picocli:picocli:4.1.0'    
     compile 'com.networknt:json-schema-validator:1.0.40'
     compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.0'
-
     // The production code uses the SLF4J logging API at compile time
     //compile 'org.slf4j:slf4j-api:1.7.21'
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.30'
 }
 
 mainClassName = 'eu.indigo.jplvalidator.Cli'

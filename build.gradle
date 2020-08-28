@@ -28,8 +28,8 @@ dependencies {
     compile 'com.networknt:json-schema-validator:1.0.40'
     compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.0'
     // The production code uses the SLF4J logging API at compile time
-    compile 'org.slf4j:slf4j-api:1.7.30'
-    runtimeOnly 'org.slf4j', name: 'slf4j-simple', version: '1.7.30'
+    // compile 'org.slf4j:slf4j-api:1.7.30'
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.30'
 
 }
 

@@ -4,38 +4,61 @@
         "config_repo_settings": {
             "type": "object",
             "properties": {
-                "repo": { "type": "string", "format": "uri" },
-                "branch": { "type": "string" },
-                "dockerhub": { "type": "string" },
+                "repo": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "branch": {
+                    "type": "string"
+                },
+                "dockerhub": {
+                    "type": "string"
+                },
                 "dockertag": {
                     "anyOf": [
-                        { "type": "string" },
-                        { "type": "array" }
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array"
+                        }
                     ]
                 }
             },
-            "required": ["repo"]
+            "required": [
+                "repo"
+            ]
         },
         "config_repo": {
             "type": "object",
             "minProperties": 1,
             "patternProperties": {
-                "[a-z0-9_-]*": { "$ref": "#/definitions/config_repo_settings" }
+                "[a-z0-9_-]*": {
+                    "$ref": "#/definitions/config_repo_settings"
+                }
             }
         },
         "tox": {
             "type": "object",
             "properties": {
-                "testenv": { "type": "array" },
-                "tox_file": { "type": "string" }
+                "testenv": {
+                    "type": "array"
+                },
+                "tox_file": {
+                    "type": "string"
+                }
             },
-            "required": ["testenv"],
+            "required": [
+                "testenv"
+            ],
             "additionalProperties": false
         },
         "credentials_string": {
             "type": "object",
             "properties": {
-                "type": "string",
+                "type": {
+                    "type": "string"
+                },
                 "id": {
                     "type": "string",
                     "description": "Identifier used in Jenkins endpoint for the current credentials"
@@ -45,7 +68,9 @@
                     "description": "Sets a variable to the text given in the credentials (see Jenkins' Credentials Binding Plugin)"
                 }
             },
-            "required": ["id"],
+            "required": [
+                "id"
+            ],
             "additionalProperties": false
         },
         "credentials_file": {
@@ -53,7 +78,10 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "enum": ["file", "zip"],
+                    "enum": [
+                        "file",
+                        "zip"
+                    ],
                     "description": "Fixed ID for the <file> & <zip> credential type (see Jenkins' Credentials Binding Plugin)"
                 },
                 "id": {
@@ -65,7 +93,10 @@
                     "description": "Sets a variable to the file given in the credentials (see Jenkins' Credentials Binding Plugin)"
                 }
             },
-            "required": ["type", "id"],
+            "required": [
+                "type",
+                "id"
+            ],
             "additionalProperties": false
         },
         "credentials_certificate": {
@@ -93,7 +124,10 @@
                     "description": "Name of an environment variable to be set to the password during the build (see Jenkins' Credentials Binding Plugin)"
                 }
             },
-            "required": ["id", "keystore_var"],
+            "required": [
+                "id",
+                "keystore_var"
+            ],
             "additionalProperties": false
         },
         "credentials_username_password": {
@@ -117,7 +151,11 @@
                     "description": "Name of an environment variable to be set to the password during the build (see Jenkins' Credentials Binding Plugin)"
                 }
             },
-            "required": ["id", "username_var", "password_var"],
+            "required": [
+                "id",
+                "username_var",
+                "password_var"
+            ],
             "additionalProperties": false
         },
         "credentials_ssh_user_private_key": {
@@ -145,39 +183,43 @@
                     "description": "Name of an environment variable to be set to the username during the build (see Jenkins' Credentials Binding Plugin)"
                 }
             },
-            "required": ["id", "keyfile_var"],
+            "required": [
+                "id",
+                "keyfile_var"
+            ],
             "additionalProperties": false
         },
         "repo_settings": {
             "type": "object",
             "properties": {
-                "container": { "type": "string" },
-                "commands": { "type": "array" },
-                "tox": { "$ref": "#/definitions/tox" }
-            },
-            "oneOf": [
-                { "required": ["commands"] },
-                { "required": ["tox"] }
-            ],
-            "additionalProperties": false,
-            "dependencies": {
-                "commands": ["container"],
-                "tox": ["container"]
-            }
+		"executor": {
+		     "$ref": "#/definitions/sqa_criterion_executor"
+		},
+		"path": {
+		     "type": "string" 
+		}
+	    },
+            "additionalProperties": false
         },
         "sqa_criterion_repo": {
             "type": "object",
             "minProperties": 1,
             "patternProperties": {
-                "[a-z0-9_-]*": { "$ref": "#/definitions/repo_settings" }
+                "[a-z0-9_-]*": {
+                    "$ref": "#/definitions/repo_settings"
+                }
             }
         },
         "sqa_criterion": {
             "type": "object",
             "properties": {
-                "repos": { "$ref": "#/definitions/sqa_criterion_repo" }
+                "repos": {
+                    "$ref": "#/definitions/sqa_criterion_repo"
+                }
             },
-            "required": ["repos"],
+            "required": [
+                "repos"
+            ],
             "additionalProperties": false
         },
         "environment": {
@@ -187,7 +229,43 @@
             "propertyNames": {
                 "pattern": "^[A-Z]{1}[A-Z0-9_]*"
             }
-        }
+        },
+        "sqa_criterion_executor": {
+            "description": "Defines the SQA criterion execution enviroment",
+	        "type": "object",
+            "properties": {
+                "container": {
+                    "type": "string"
+                },
+                "commands": {
+                    "type": "array"
+                },
+                "tox": {
+                    "$ref": "#/definitions/tox"
+                }
+            },
+            "oneOf": [
+                {
+                    "required": [
+                        "commands"
+                    ]
+                },
+                {
+                    "required": [
+                        "tox"
+                    ]
+                }
+            ],
+            "additionalProperties": false,
+            "dependencies": {
+                "commands": [
+                    "container"
+                ],
+                "tox": [
+                    "container"
+                ]
+            }
+	}
     },
     "type": "object",
     "properties": {
@@ -197,41 +275,73 @@
             "properties": {
                 "node_agent": {
                     "type": "string",
-                    "enum": ["docker_compose"]
+                    "enum": [
+                        "docker_compose"
+                    ]
                 },
-                "deploy_template": { "type": "string" },
-                "project_repos": { "$ref": "#/definitions/config_repo" },
+                "deploy_template": {
+                    "type": "string"
+                },
+                "project_repos": {
+                    "$ref": "#/definitions/config_repo"
+                },
                 "credentials": {
                     "type": "array",
                     "items": {
                         "anyOf": [
-                            { "$ref": "#/definitions/credentials_string" },
-                            { "$ref": "#/definitions/credentials_certificate" },
-                            { "$ref": "#/definitions/credentials_username_password" },
-                            { "$ref": "#/definitions/credentials_ssh_user_private_key" }
+                            {
+                                "$ref": "#/definitions/credentials_string"
+                            },
+                            {
+                                "$ref": "#/definitions/credentials_certificate"
+                            },
+                            {
+                                "$ref": "#/definitions/credentials_username_password"
+                            },
+                            {
+                                "$ref": "#/definitions/credentials_ssh_user_private_key"
+                            }
                         ]
                     }
                 }
             },
             "additionalProperties": false,
-            "required": ["project_repos"]
+            "required": [
+                "project_repos"
+            ]
         },
         "sqa_criteria": {
             "description": "Contains all the required SQA baseline's criteria definitions",
             "type": "object",
             "minProperties": 1,
             "properties": {
-                "qc_accessibility": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_licensing": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_style": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_coverage": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_functional": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_security": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_doc": { "$ref": "#/definitions/sqa_criterion" }
+                "qc_accessibility": {
+                    "$ref": "#/definitions/sqa_criterion"
+                },
+                "qc_licensing": {
+                    "$ref": "#/definitions/sqa_criterion"
+                },
+                "qc_style": {
+                    "$ref": "#/definitions/sqa_criterion"
+                },
+                "qc_coverage": {
+                    "$ref": "#/definitions/sqa_criterion"
+                },
+                "qc_functional": {
+                    "$ref": "#/definitions/sqa_criterion"
+                },
+                "qc_security": {
+                    "$ref": "#/definitions/sqa_criterion"
+                },
+                "qc_doc": {
+                    "$ref": "#/definitions/sqa_criterion"
+                }
             },
             "additionalProperties": false
         },
-        "environment": { "$ref": "#/definitions/environment" },
+        "environment": {
+            "$ref": "#/definitions/environment"
+        },
         "timeout": {
             "description": "Sets the timeout for the pipeline execution",
             "type": "integer",
@@ -244,3 +354,4 @@
     ],
     "additionalProperties": false
 }
+

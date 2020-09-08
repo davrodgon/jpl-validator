@@ -192,8 +192,8 @@
         "repo_settings": {
             "type": "object",
             "properties": {
-		"executor": {
-		     "$ref": "#/definitions/sqa_criterion_executor"
+                "executor": {
+                    "$ref": "#/definitions/sqa_criterion_executor"
 		},
 		"path": {
 		     "type": "string" 

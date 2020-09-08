@@ -194,16 +194,16 @@
             "properties": {
                 "executor": {
                     "$ref": "#/definitions/sqa_criterion_executor"
-		},
-		"path": {
-		     "type": "string" 
-		}
-	    },
-            "additionalProperties": false
         },
-        "sqa_criterion_repo": {
-            "type": "object",
-            "minProperties": 1,
+        "path": {
+            "type": "string"
+        }
+    },
+    "additionalProperties": false
+},
+"sqa_criterion_repo": {
+    "type": "object",
+    "minProperties": 1,
             "patternProperties": {
                 "[a-z0-9_-]*": {
                     "$ref": "#/definitions/repo_settings"
@@ -232,7 +232,7 @@
         },
         "sqa_criterion_executor": {
             "description": "Defines the SQA criterion execution enviroment",
-	        "type": "object",
+            "type": "object",
             "properties": {
                 "container": {
                     "type": "string"
@@ -265,7 +265,7 @@
                     "container"
                 ]
             }
-	}
+    }
     },
     "type": "object",
     "properties": {

@@ -260,9 +260,6 @@
             "dependencies": {
                 "commands": [
                     "container"
-                ],
-                "tox": [
-                    "container"
                 ]
             }
     }

@@ -194,12 +194,12 @@
             "properties": {
                 "executor": {
                     "$ref": "#/definitions/sqa_criterion_executor"
-        },
-        "path": {
-            "type": "string"
-        }
-    },
-    "additionalProperties": false
+                },
+                "path": {
+                    "type": "array"
+                }
+            },
+            "additionalProperties": false
 },
 "sqa_criterion_repo": {
     "type": "object",

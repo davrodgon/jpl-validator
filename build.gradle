@@ -34,7 +34,7 @@ dependencies {
 }
 
 mainClassName = 'eu.indigo.jplvalidator.Cli'
-project.ext.organization = 'davrodgon'
+project.ext.organization = 'eoscsynergy'
 
 def details = versionDetails()
 version = gitVersion()
@@ -46,7 +46,7 @@ if (System.env.GIT_BRANCH) {
 }
 
 // Google's jib task
-jib.to.image = "davrodgon/${project.name}:${version}"
+jib.to.image = "eoscsynergy/${project.name}:${version}"
 jib.container.mainClass = mainClassName
 jib.to.auth.username = "${System.env.DOCKER_USER}"
 jib.to.auth.password = "${System.env.DOCKER_PASS}"

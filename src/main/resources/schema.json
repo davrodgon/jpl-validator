@@ -318,19 +318,28 @@
                 "qc_licensing": {
                     "$ref": "#/definitions/sqa_criterion"
                 },
+                "qc_workflow": {
+                    "$ref": "#/definitions/sqa_criterion"
+                },
                 "qc_style": {
                     "$ref": "#/definitions/sqa_criterion"
                 },
-                "qc_coverage": {
+                "qc_metadata": {
+                    "$ref": "#/definitions/sqa_criterion"
+                },
+                "qc_unit": {
                     "$ref": "#/definitions/sqa_criterion"
                 },
                 "qc_functional": {
                     "$ref": "#/definitions/sqa_criterion"
                 },
-                "qc_security": {
+                "qc_integration": {
                     "$ref": "#/definitions/sqa_criterion"
                 },
                 "qc_doc": {
+                    "$ref": "#/definitions/sqa_criterion"
+                },
+                "qc_security": {
                     "$ref": "#/definitions/sqa_criterion"
                 }
             },

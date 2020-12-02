@@ -20,26 +20,26 @@ pipeline {
                 }
             }
 	}
-        // stage('SQA baseline dynamic stages: qc-doc') {
-        //     when {
-        //         anyOf {
-        //             branch 'refs/heads/*'
-        //             buildingTag()
-        //             not { changeRequest() }
-        //         }
-        //     }
-        //     steps {
-        //         script {
-        //             projectConfig = pipelineConfig('./.sqa/config_qc_doc.yml', null, null, null, 'eoscsynergy/jpl-validator:jib-with-jpl')
-        //             //projectConfig = pipelineConfig('./.sqa/config.yml')
-        //             buildStages(projectConfig)
-        //         }
-        //     }
-        //     post {
-        //         cleanup {
-        //             cleanWs()
-        //         }
-        //     }
-        // }
+        stage('SQA baseline dynamic stages: qc-doc') {
+            when {
+                anyOf {
+                    branch 'refs/heads/*'
+                    buildingTag()
+                    not { changeRequest() }
+                }
+            }
+            steps {
+                script {
+                    projectConfig = pipelineConfig('./.sqa/config_qc_doc.yml', null, null, null, 'eoscsynergy/jpl-validator:jib-with-jpl')
+                    //projectConfig = pipelineConfig('./.sqa/config.yml')
+                    buildStages(projectConfig)
+                }
+            }
+            post {
+                cleanup {
+                    cleanWs()
+                }
+            }
+        }
     }
 }

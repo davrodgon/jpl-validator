@@ -38,7 +38,7 @@ public class Cli implements Callable<Integer> {
     }
 
     private Set validate(File file) {
-		String schema = this.getClass().getResource('/schema.json').text
+	String schema = this.getClass().getResource('/schema.json').text
         
         ObjectMapper objMapper = new ObjectMapper(new YAMLFactory())
 

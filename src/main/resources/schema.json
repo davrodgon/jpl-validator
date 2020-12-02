@@ -238,7 +238,6 @@
         }
     },
     "required": [
-        "config",
         "sqa_criteria"
     ],
     "additionalProperties": false

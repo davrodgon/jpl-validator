@@ -4,6 +4,7 @@ services:
   ajv:
     image: "3scale/ajv"
     hostname: "jpl-validator-style"
+    container_name: "jpl-validator-style"
     volumes:
       - type: bind
         source: ./

@@ -7,6 +7,5 @@ sqa_criteria:
       jpl-validator:
         container: ajv
         commands:
-          - pwd
           - npm install -g ajv-cli
           - ajv compile -s /jpl-validator-style/src/main/resources/schema.json  

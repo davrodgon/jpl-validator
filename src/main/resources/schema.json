@@ -35,7 +35,9 @@
         "credentials_string": {
             "type": "object",
             "properties": {
-                "type": "string",
+		"type": {
+		    "type": "string"
+		},
                 "id": {
                     "type": "string",
                     "description": "Identifier used in Jenkins endpoint for the current credentials"

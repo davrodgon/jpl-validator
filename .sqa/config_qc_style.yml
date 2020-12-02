@@ -1,0 +1,7 @@
+sqa_criteria:
+  qc_style:
+    repos:
+      jpl-validator:
+        container: ajv
+        commands:
+          - ajv compile -s /jpl-validator-style/src/main/resources/schema.json  

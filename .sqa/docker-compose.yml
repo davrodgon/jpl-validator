@@ -1,6 +1,14 @@
 version: "3.6"
 
 services:
+  ajv:
+    image: "3scale/ajv"
+    hostname: "jpl-validator-style"
+    volumes:
+      - type: bind
+        source: ./
+        target: /jpl-validator-style
+    command: sleep infinity
   gradle:
     image: "gradle"
     hostname: "jpl-validator"

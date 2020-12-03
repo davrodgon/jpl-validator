@@ -1,6 +1,3 @@
-config:
-  node_agent: docker_compose
-
 sqa_criteria:
   qc_style:
     repos:
@@ -8,4 +5,4 @@ sqa_criteria:
         container: ajv
         commands:
           - npm install -g ajv-cli
-          - ajv compile -s /jpl-validator-style/src/main/resources/schema.json  
+          - ajv compile -s /jpl-validator-style/src/main/resources/schema.json

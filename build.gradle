@@ -44,10 +44,15 @@ if (version == null) {
 }
 else {
     if (version == 'master') {
-        version = 'latest'
+        jib.to.image = "${project.ext.organization}/${project.name}:latest"
+    }
+    else if (details.isCleanTag) {
+        jib.to.image = "${project.ext.organization}/${project.name}:${details.lastTag}"
+    }
+    else {
+        jib.to.image = "${project.ext.organization}/${project.name}:${details.branchName}"
     }
     jib.container.mainClass = mainClassName
-    jib.to.image = "${project.ext.organization}/${project.name}:${version}"
     jib.to.auth.username = "${System.env.JPL_USERNAME}"
     jib.to.auth.password = "${System.env.JPL_PASSWORD}"
 }

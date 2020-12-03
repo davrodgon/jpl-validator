@@ -19,7 +19,7 @@ pipeline {
                     cleanWs()
                 }
             }
-	}
+        }
         stage('SQA baseline dynamic stages: qc-doc') {
             when {
                 anyOf {

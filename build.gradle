@@ -34,6 +34,7 @@ dependencies {
 
 mainClassName = 'eu.indigo.jplvalidator.Cli'
 project.ext.organization = 'eoscsynergy'
+
 def details = versionDetails()
 version = details.branchName
 
@@ -49,7 +50,6 @@ else {
     jib.to.image = "${project.ext.organization}/${project.name}:${version}"
     jib.to.auth.username = "${System.env.JPL_USERNAME}"
     jib.to.auth.password = "${System.env.JPL_PASSWORD}"
-	
 }
 
 // 'fatJar' task
@@ -66,6 +66,7 @@ task fatJar(type: Jar) {
     }
 }
 
+// 'showVersion' task
 task showVersion {
     doLast {
         println "\nCurrent version: ${gitVersion()}\n"

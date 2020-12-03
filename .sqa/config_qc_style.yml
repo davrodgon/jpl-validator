@@ -1,0 +1,8 @@
+sqa_criteria:
+  qc_style:
+    repos:
+      jpl-validator:
+        container: ajv
+        commands:
+          - npm install -g ajv-cli
+          - ajv compile -s /jpl-validator-style/src/main/resources/schema.json

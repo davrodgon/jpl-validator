@@ -37,26 +37,19 @@ project.ext.organization = 'eoscsynergy'
 
 def details = versionDetails()
 version = details.branchName
-println ">>>>>>>>>>>> gitHash: ${details.gitHash}"
-println ">>>>>>>>>>>> branchName: ${details.branchName}"
-println ">>>>>>>>>>>> VERSION: ${version}"
 
 // Google's jib task
 if (version == null) {
-    println ">>>>>>>>>>>> NULL"
     throw new GradleException('Cannot get current branch name!')
 }
 else {
     if (version == 'master') {
-        println ">>>>>>>>>>>> IF (master)"
         jib.to.image = "${project.ext.organization}/${project.name}:latest"
     }
     else if (details.isCleanTag) {
-        println ">>>>>>>>>>>> ELSE IF"
         jib.to.image = "${project.ext.organization}/${project.name}:${details.lastTag}"
     }
     else {
-        println ">>>>>>>>>>>> ELSE"
         jib.to.image = "${project.ext.organization}/${project.name}:${details.branchName}"
     }
     jib.container.mainClass = mainClassName

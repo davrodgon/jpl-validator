@@ -9,8 +9,9 @@ pipeline {
         stage('SQA baseline dynamic stages: qc-style') {
             steps {
                 script {
-                    projectConfig = pipelineConfig('./.sqa/config_qc_style.yml', null, null, null, 'eoscsynergy/jpl-validator:jib-with-jpl')
-                    //projectConfig = pipelineConfig('./.sqa/config.yml')
+                    projectConfig = pipelineConfig(
+                        configFile: './.sqa/config_qc_style.yml'
+                    )
                     buildStages(projectConfig)
                 }
             }
@@ -30,8 +31,10 @@ pipeline {
             }
             steps {
                 script {
-                    projectConfig = pipelineConfig('./.sqa/config_qc_doc.yml', null, null, null, 'eoscsynergy/jpl-validator:jib-with-jpl')
-                    //projectConfig = pipelineConfig('./.sqa/config.yml')
+                    projectConfig = pipelineConfig(
+                        configFile: './.sqa/config_qc_doc.yml',
+                        [ localBranch: true ]
+                    )
                     buildStages(projectConfig)
                 }
             }

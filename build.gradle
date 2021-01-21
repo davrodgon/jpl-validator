@@ -24,49 +24,57 @@ repositories {
 // In this section you declare the dependencies for your production and test code
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.14'
-
     compile 'info.picocli:picocli:4.1.0'
-    
     compile 'com.networknt:json-schema-validator:1.0.40'
     compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.0'
-
     // The production code uses the SLF4J logging API at compile time
     //compile 'org.slf4j:slf4j-api:1.7.21'
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.30'
 }
 
 mainClassName = 'eu.indigo.jplvalidator.Cli'
 project.ext.organization = 'eoscsynergy'
 
 def details = versionDetails()
-version = gitVersion()
-if (details.commitDistance > 0) {
-    version = details.branchName
-}
-if (System.env.GIT_BRANCH) {
-    version = System.env.GIT_BRANCH
-}
+version = details.branchName
 
 // Google's jib task
-jib.to.image = "eoscsynergy/${project.name}:${version}"
-jib.container.mainClass = mainClassName
-jib.to.auth.username = "${System.env.DOCKER_USER}"
-jib.to.auth.password = "${System.env.DOCKER_PASS}"
+if (version == null) {
+    throw new GradleException('Cannot get current branch name!')
+}
+else {
+    if (version == 'master') {
+        jib.to.image = "${project.ext.organization}/${project.name}:latest"
+    }
+    else if (details.isCleanTag) {
+        jib.to.image = "${project.ext.organization}/${project.name}:${details.lastTag}"
+    }
+    else {
+        jib.to.image = "${project.ext.organization}/${project.name}:${details.branchName}"
+    }
+    jib.container.mainClass = mainClassName
+    jib.to.auth.username = "${System.env.JPL_USERNAME}"
+    jib.to.auth.password = "${System.env.JPL_PASSWORD}"
+}
 
 // 'fatJar' task
 task fatJar(type: Jar) {
+    if (!version == null){
         manifest {
-        attributes 'Implementation-Title': 'Gradle Jar File Example',
-                   'Implementation-Version': version,
-                   'Main-Class': mainClassName
+            attributes 'Implementation-Title': 'Gradle Jar File Example',
+                       'Implementation-Version': version,
+                       'Main-Class': mainClassName
+        }
+        baseName = project.name
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+        with jar
     }
-    baseName = project.name
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
 }
 
+// 'showVersion' task
 task showVersion {
     doLast {
-        println "\nversion: ${version}\n"
+        println "\nCurrent version: ${gitVersion()}\n"
         println "last tag          : ${details.lastTag}"
         println "commit distance   : ${details.commitDistance}"
         println "hash              : ${details.gitHash}"

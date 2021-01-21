@@ -1,0 +1,20 @@
+version: "3.6"
+
+services:
+  ajv:
+    image: "node"
+    hostname: "node"
+    container_name: "node"
+    volumes:
+      - type: bind
+        source: ./
+        target: /jpl-validator-style
+    command: sleep infinity
+  gradle:
+    image: "gradle"
+    hostname: "jpl-validator"
+    volumes:
+      - type: bind
+        source: ./
+        target: /jpl-validator
+    command: sleep infinity

@@ -1,0 +1,12 @@
+config:
+  credentials:
+      - type: username_password
+        id: orviz-dockerhub
+
+sqa_criteria:
+  qc_doc:
+    repos:
+      jpl-validator:
+        container: gradle
+        commands:
+            - /jpl-validator/gradlew -p /jpl-validator jib

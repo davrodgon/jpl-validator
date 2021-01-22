@@ -43,12 +43,12 @@ public class Cli implements Callable<Integer> {
         ObjectMapper objMapper = new ObjectMapper(new YAMLFactory())
 
         JsonSchemaFactory factory = JsonSchemaFactory.builder(
-            JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7))
-        .objectMapper(objMapper).build()
+                JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7))
+                .objectMapper(objMapper).build()
 
         Set invalidMessages = factory.getSchema(schema)
-        .validate(objMapper.readTree(file.text))
-        .message
+                .validate(objMapper.readTree(file.text))
+                .message
         return invalidMessages
     }
 

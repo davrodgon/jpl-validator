@@ -17,12 +17,12 @@ $ ./gradlew run --args='.sqa/config.yml'
 
 ```
 $ ./gradlew fatJar
-$ java -jar ./build/libs/jpl-validator-1.0.0.jar .sqa/config.yml
+$ java -jar ./build/libs/jpl-validator-1.1.0.jar .sqa/config.yml
 ```
 
 #### Through Docker (via Google's Jib)
 
 ```
 $ ./gradlew jibDockerBuild
-$ docker run --rm -v $PWD:/jpl eoscsynergy/jpl-validator:1.0.0 /jpl/.sqa/config.yml
+$ docker run --rm -v $PWD:/jpl eoscsynergy/jpl-validator:1.1.0 /jpl/.sqa/config.yml
 ```

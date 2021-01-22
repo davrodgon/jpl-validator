@@ -213,13 +213,13 @@
             "type": "object",
             "minProperties": 1,
             "properties": {
-                "qc_accessibility": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_licensing": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_style": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_coverage": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_functional": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_security": { "$ref": "#/definitions/sqa_criterion" },
-                "qc_doc": { "$ref": "#/definitions/sqa_criterion" }
+                "QC.Acc": { "$ref": "#/definitions/sqa_criterion" },
+                "QC.Lic": { "$ref": "#/definitions/sqa_criterion" },
+                "QC.Sty": { "$ref": "#/definitions/sqa_criterion" },
+                "QC.Uni": { "$ref": "#/definitions/sqa_criterion" },
+                "QC.Fun": { "$ref": "#/definitions/sqa_criterion" },
+                "QC.Sec": { "$ref": "#/definitions/sqa_criterion" },
+                "QC.Doc": { "$ref": "#/definitions/sqa_criterion" }
             },
             "additionalProperties": false
         },

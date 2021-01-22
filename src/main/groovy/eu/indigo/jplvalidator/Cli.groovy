@@ -47,8 +47,8 @@ public class Cli implements Callable<Integer> {
                 .objectMapper(objMapper).build()
 
         Set invalidMessages = factory.getSchema(schema)
-        .validate(objMapper.readTree(file.text))
-        .message
+                .validate(objMapper.readTree(file.text))
+                .message
         return invalidMessages
     }
 

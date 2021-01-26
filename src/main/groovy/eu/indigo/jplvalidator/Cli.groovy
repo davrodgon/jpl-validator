@@ -14,10 +14,10 @@ import picocli.CommandLine.Parameters
 import java.util.concurrent.Callable
 
 @Command(
-  name = "jpl-validator",
-  description = "Validates config.yml from jenkins-pipeline-library (v2)",
-  version = "jpl-validator jib-with-jpl",
-  mixinStandardHelpOptions = true
+    name = "jpl-validator",
+    description = "Validates config.yml from jenkins-pipeline-library (v2)",
+    version = "jpl-validator 1.1.0",
+    mixinStandardHelpOptions = true
 )
 public class Cli implements Callable<Integer> {
     @Parameters(index="0", paramLabel="FILE", description="The config file to validate.")
@@ -38,8 +38,8 @@ public class Cli implements Callable<Integer> {
     }
 
     private Set validate(File file) {
-	String schema = this.getClass().getResource('/schema.json').text
-        
+        String schema = this.getClass().getResource('/schema.json').text
+
         ObjectMapper objMapper = new ObjectMapper(new YAMLFactory())
 
         JsonSchemaFactory factory = JsonSchemaFactory.builder(
